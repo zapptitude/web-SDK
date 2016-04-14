@@ -1,0 +1,20 @@
+{
+  "name": "zapptitude-sdk-javascript",
+  "version": "1.0.0",
+  "description": "Helps to log Zapp events with your ZappId",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://andrew_goncharenko@bitbucket.org/andrew_goncharenko/zapptitude-sdk-javascript.git"
+  },
+  "keywords": [
+    "zapptitude",
+    "logs"
+  ],
+  "author": "Andrew Goncharenko <andrew.goncharenko@mev.com>",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/andrew_goncharenko/zapptitude-sdk-javascript#readme"
+}

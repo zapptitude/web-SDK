@@ -4,7 +4,7 @@
   "description": "Helps to log Zapp events with your ZappId",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha src/index.test.js -w"
   },
   "repository": {
     "type": "git",
@@ -16,5 +16,9 @@
   ],
   "author": "Andrew Goncharenko <andrew.goncharenko@mev.com>",
   "license": "ISC",
-  "homepage": "https://bitbucket.org/andrew_goncharenko/zapptitude-sdk-javascript#readme"
+  "homepage": "https://bitbucket.org/andrew_goncharenko/zapptitude-sdk-javascript#readme",
+  "devDependencies": {
+    "chai": "3.5.0",
+    "mocha": "2.4.5"
+  }
 }

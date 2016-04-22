@@ -92,7 +92,7 @@
             return result;
         };
 
-        function taskDuration(task, context) {
+        this.taskDuration = function(task, context) {
             if (taskStartTime <= 0) {
                 return -1;
             }

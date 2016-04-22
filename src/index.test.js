@@ -5,7 +5,7 @@ describe('Zapptitude:', function() {
     describe('logEvent', function() {
         it('should be no errors', function () {
             index.logEvent("test_event");
-            
+
         });
     });
     // describe('logBeginTask', function() {

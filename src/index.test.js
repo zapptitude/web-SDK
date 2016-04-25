@@ -1,10 +1,11 @@
 var expect = require('chai').expect;
-var index = require('./index');
+var index = require('./index.js');
 
 describe('Zapptitude:', function() {
     describe('logEvent', function() {
         it('should be no errors', function () {
             index.logEvent("test_event");
+
         });
     });
     // describe('logBeginTask', function() {
@@ -37,7 +38,4 @@ describe('Zapptitude:', function() {
     //         index.logSolveGradTask("grad", "test_task", "test_context", "test_topics", 1, 2, 10);
     //     });
     // });
-});
-
-describe('ZappEventManager:', function() {
 });

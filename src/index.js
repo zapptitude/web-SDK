@@ -1,138 +1,179 @@
-
-//region ZappInternal
+;var zapptitude = (function (){
 
     //region Constants
 
-    POSITIVE_INDEX = 100000000;
-    RANDOM_LENGTH_INDEX = 900000000000000000;
+    var POSITIVE_INDEX = 100000000;
+    var RANDOM_LENGTH_INDEX = 900000000000000000;
 
-    Z_EVENT_KEY = "ZEvent";
-    Z_BEGIN_TASK_KEY = "ZBeginTask";
-    Z_SOLVE_TASK_KEY = "ZSolveTask";
+    var Z_EVENT_KEY = "ZEvent";
+    var Z_BEGIN_TASK_KEY = "ZBeginTask";
+    var Z_SOLVE_TASK_KEY = "ZSolveTask";
 
-    EVENT_KEY = "event";
-    TASK_KEY = "task";
-    CONTEXT_KEY = "contex";
-    TYPE_KEY = "type";
-    EXPECTED_KEY = "expected";
-    TOPICS_KEY = "topics";
-    ACTUAL_KEY = "actual";
-    AMONG_KEY = "among";
-    BINARY_KEY = "binary";
-    INT_KEY = "binary";
-    FLOAT_KEY = "float";
-    MC_KEY = "mc";
-    GRAD_KEY = "grad";
+    var EVENT_KEY = "event";
+    var TASK_KEY = "task";
+    var CONTEXT_KEY = "contex";
+    var TYPE_KEY = "type";
+    var EXPECTED_KEY = "expected";
+    var TOPICS_KEY = "topics";
+    var ACTUAL_KEY = "actual";
+    var AMONG_KEY = "among";
+    var BINARY_KEY = "binary";
+    var INT_KEY = "binary";
+    var FLOAT_KEY = "float";
+    var MC_KEY = "mc";
+    var GRAD_KEY = "grad";
 
-    EMPTY_INDEX = 0;
+    var ZID_KEY = "zid";
+    var ZID_SESSION = "session";
+    var ZID_DURATION = "duration";
+    var ZID_TIME = "time";
 
-    ZID_KEY = "zid";
-    ZID_SESSION = "session";
-    ZID_DURATION = "duration";
-    ZID_TIME = "time";
+    var Z_URL_PART = "https://zapptitude-dev.herokuapp.com/api";
+
+    var REGULAR_EXPRESSION = "[^a-zA-Z0-9.-]";
+    var REPLACEMENT = "_";
+
+    var UNKNOWN_APP_TEXT = "unknownApp";
+
+
+    var APP_NAME_KEY = "appName";
+    var APP_VERSION_KEY = "appVersion";
+    var APP_IDENTIFIER_KEY = "appIdentifier";
+    var APP_ID_KEY = "appId";
+    var SESSION_ID_KEY = "sessionId";
 
     //endregion
 
-    var zappInternal = {
+    //region ZappInternal
 
-        //region Properties
+    function ZappInternal() {
+        if (ZappInternal.instance) {
+            return ZappInternal.instance;
+        }
 
-        // sessionId: this.randomId(),
-        zappId: "",
-        taskName: "",
-        contextName: "",
-        sessionStartTime: new Date().getTime(),
-        taskStartTime: 0,
+        this.sessionId = randomId();
+        var zappId = "";
+        var taskName = "";
+        var contextName = "";
+        var sessionStartTime = new Date().getTime();
+        var taskStartTime = 0;
 
-        // String appIdentifier = LInfoHelper.getInstance().getPackageName();
-        // String appVersion = LInfoHelper.getInstance().getVersion();
-        // String appId = (appIdentifier == null || appVersion == null) ? UNKNOWN_APP_TEXT : appIdentifier;
+        // var appVersion = localStorage.getItem(APP_VERSION_KEY)
+        // var appIdentifier = localStorage.getItem(APP_IDENTIFIER_KEY)
+
+
+        // var appId = (appIdentifier && appVersion) ? appIdentifier : UNKNOWN_APP_TEXT;
+
+        // var cleanedAppId = replaceAll(appId, REGULAR_EXPRESSION, REPLACEMENT);
         //
-        // String cleanedAppId = appId.replaceAll(REGULAR_EXPRESSION, REPLACEMENT);
-        // Logger.getInstance().loggerWithAppID(cleanedAppId);
+        // // zappEventLogger.loggerWithAppID(cleanedAppId);
+        //
+        this.replaceAll = function(str, find, replace) {
+            return str.replace(new RegExp(find, 'g'), replace);
+        };
 
-        //endregion
+        this.sessionInfo = function() {
+            var result = {};
 
-        sessionInfo: function() {
-            var result = [];
-
-            result[ZID_KEY] = this.zappId;
-            result[ZID_SESSION] = this.randomId();
-            result[ZID_TIME] = String.valueOf(new Date().getTime() - this.sessionStartTime);
+            result[ZID_KEY] = localStorage.getItem(ZID_KEY) || zappId;
+            result[ZID_SESSION] = randomId();
+            result[ZID_TIME] = String.valueOf(new Date().getTime() - sessionStartTime);
             return result;
-        },
+        };
 
-        sessionInfoForTask: function(task, context) {
-            var result = [];
+        this.sessionInfoForTask = function(task, context) {
+            var result = {};
 
-            result[ZID_KEY] = this.zappId;
-            result[ZID_SESSION] = this.randomId();
-            result[ZID_DURATION] = String.valueOf(zappInternal.taskDuration(task, context).toFixed(3));
-            result[ZID_TIME] = String.valueOf(new Date().getTime() - this.sessionStartTime);
+            result[ZID_KEY] = localStorage.getItem(ZID_KEY) || zappId;
+            result[ZID_SESSION] = randomId();
+            result[ZID_DURATION] = String.valueOf(this.taskDuration(task, context).toFixed(3));
+            result[ZID_TIME] = String.valueOf(new Date().getTime() - sessionStartTime);
 
             return result;
-        },
+        };
 
-        taskDuration: function(task, context) {
-            if (this.taskStartTime <= 0) {
+        this.taskDuration = function(task, context) {
+            if (taskStartTime <= 0) {
                 return -1;
             }
-            if ((this.taskName || task) && !this.taskName.equals(task)) {
+            if ((taskName || task) && !taskName.equals(task)) {
                 return -1;
             }
-            if ((this.contextName || context) && !this.contextName.equals(context)) {
+            if ((contextName || context) && !contextName.equals(context)) {
                 return -1;
             }
-            return new Date().getTime() - this.taskStartTime;
-        },
+            return new Date().getTime() - taskStartTime;
+        }
 
-        randomId: function() {
-            return Math.floor(POSITIVE_INDEX + Math.random() * RANDOM_LENGTH_INDEX);
-        },
+        function randomId() {
+            return "Z-" + Math.floor(POSITIVE_INDEX + Math.random() * RANDOM_LENGTH_INDEX);
+        }
 
-        setTask: function(task, context) {
-            this.taskStartTime = new Date().getTime();
+        function setTask(task, context) {
+            taskStartTime = new Date().getTime();
 
             if (task) {
-                this.taskName = null;
+                taskName = null;
             } else {
-                this.taskName = new String(task);
+                taskName = new String(task);
             }
             if (context) {
-                this.contextName = null;
+                contextName = null;
             } else {
-                this.contextName = new String(context);
+                contextName = new String(context);
             }
         }
-    };
 
-//endregion
+        this.requestZappId = function() {
+            var zappId = prompt("Please enter your ZappId");
+            checkZappId(zappId);
+        };
 
-//region ZappEventManager
+        function checkZappId(zappId) {
+            var url = Z_URL_PART + "/" + "check" + "/" + zappId;
+            zappConnectionService.getData(url);
+        }
 
-    EMPTY_INDEX = 0;
+        this.userProviderZappId = function() {
+            var zappId = localStorage.getItem(ZID_KEY);
+            if (!zappId)
+                return "zapp id was not entered";
+            return zappId;
+        }
 
-    var zappEventManager = {
+        return ZappInternal.instance = this;
+    }
 
-        logEvent: function(event, info) {
-            var loggedArray = [info];
+    var zappInternal = new ZappInternal;
+
+    //endregion
+
+    //region ZappEventManager
+
+    function ZappEventManager() {
+        if (ZappEventManager.instance) {
+            return ZappEventManager.instance;
+        }
+
+        this.logEvent = function(event, info) {
+            var loggedArray = {info};
 
             loggedArray[EVENT_KEY] = event;
 
             zappEventLogger.logEvent(Z_EVENT_KEY, loggedArray)
-        },
+        };
 
-        logBeginTask: function(task, context, info) {
-            var loggedArray = [info];
+        this.logBeginTask = function(task, context, info) {
+            var loggedArray = {info};
 
             loggedArray[TASK_KEY] = task;
             loggedArray[CONTEXT_KEY] = context;
 
             zappEventLogger.logEvent(Z_BEGIN_TASK_KEY, loggedArray)
-        },
+        };
 
-        logSolveTask: function(type, task, context, topics, expected, actual, among, info) {
-            var loggedArray = [info];
+        this.logSolveTask = function(type, task, context, topics, expected, actual, among, info) {
+            var loggedArray = {info};
 
             loggedArray[TYPE_KEY] = type;
             loggedArray[EXPECTED_KEY] = expected;
@@ -144,172 +185,242 @@
                 loggedArray[AMONG_KEY] = among;
             }
             zappEventLogger.logEvent(Z_SOLVE_TASK_KEY, loggedArray)
-        },
+        };
 
-        logSolveBinaryTask: function(task, context, topics, expected, actual, info) {
+        this.logSolveBinaryTask = function(task, context, topics, expected, actual, info) {
             this.logSolveTask(BINARY_KEY, task, context, topics, expected, actual, undefined, info)
-        },
+        };
 
-        logSolveIntTask: function(task, context, topics, expected, actual, info) {
+        this.logSolveIntTask = function(task, context, topics, expected, actual, info) {
             this.logSolveTask(INT_KEY, task, context, topics, expected, actual, undefined, info)
-        },
+        };
 
-        logSolveFloatTask: function(task, context, topics, expected, actual, info) {
+        this.logSolveFloatTask = function(task, context, topics, expected, actual, info) {
             this.logSolveTask(FLOAT_KEY, task, context, topics, expected, actual, undefined, info)
-        },
+        };
 
-        logSolveMCTask: function(task, context, topics, expected, actual, among, info) {
+        this.logSolveMCTask = function(task, context, topics, expected, actual, among, info) {
             this.logSolveTask(MC_KEY, task, context, topics, expected, actual, among, info)
-        },
+        };
 
-        logSolveGradTask: function(task, context, topics, expected, actual, among, info) {
+        this.logSolveGradTask = function(task, context, topics, expected, actual, among, info) {
             this.logSolveTask(GRAD_KEY, task, context, topics, expected, actual, among, info)
-        }
+        };
 
-    };
+        return ZappEventManager.instance = this;
+    }
 
-//endregion
-
-//region ZappEventLogger
-
-    //region Constants
-
-    Z_URL_PART = "https://zapptitude-dev.herokuapp.com";
-
-    Z_API_URL_PART = "api/events";
+    var zappEventManager = new ZappEventManager;
 
     //endregion
 
-    var zappEventLogger = {
+    //region ZappEventLogger
 
-        logEvent: function(eventType, data) {
-            // //        LLocation currentLocation = LInfoHelper.getInstance().getCurrentLocationInfo();
-            var event = new this.event(eventType, zappInfoCollector.location(), zappInfoCollector.connectionState(), data);
-            var requestData = new this.requestData(event, zappInfoCollector.browserInfo(), zappInfoCollector.appInfo());
-
-            var url = Z_URL_PART + Z_API_URL_PART + zappInfoCollector.appId()
-
-            zappConnectionService.postData(url, zappJsonManager.convertToJson(requestData));
-        },
-
-        event: function(eventType, location, connectionState, payload) {
-            this.eventType = eventType;
-            this.location = location;
-            this.connectionState = connectionState;
-            this.payload = payload;
-        },
-
-        requestData: function(event, browserInfo, appInfo) {
-            this.event = event;
-            this.browserInfo = browserInfo;
-            this.appInfo = appInfo;
-            this.timeStamp = new Date();
+    function ZappEventLogger() {
+        if (ZappEventLogger.instance) {
+            return ZappEventLogger.instance;
         }
 
-    };
+        this.loggerWithAppID = function(appId) {
 
-//endregion
+            debugger;
 
-//region ZappInfoCollector
+            if(!appIdIsValid(appId))
+                return;
 
-    var zappInfoCollector = {
+            var sessionId = generateSessionId(appId);
+            localStorage.setItem(APP_ID_KEY, appId)
+            localStorage.setItem(SESSION_ID_KEY, sessionId);
 
-        location: function() {
-            var result = [];
+            debugger;
+
+            this.logEvent("start_session");
+        }
+
+        function appIdIsValid(appId) {
+            return (appId);
+        }
+
+        function generateSessionId(appId) {
+            var timeInMilliseconds = (new Date()).getTime();
+            text = String.valueOf(timeInMilliseconds);
+            // TODO: add encryption
+            return "encrypted_session";
+        }
+
+        this.logEvent = function(eventType, data) {
+            var event = new Event(eventType, zappInfoCollector.location(), zappInfoCollector.connectionState(), data);
+            var requestData = new RequestData(event, zappInfoCollector.browserInfo(), zappInfoCollector.appInfo());
+
+            var url = Z_URL_PART + "/" + "events" + "/" + localStorage.getItem(APP_ID_KEY);
+
+            zappConnectionService.postData(url, getQueryString(getJsonList(requestData)));
+        };
+
+        function Event(eventType, location, connectionState, payload) {
+            this.name = eventType;
+            this.session = zappInternal.sessionId;
+            this.timeStamp = new Date().getTime();
+            this.location = location;
+            this.payload = payload;
+            this.connection_state = connectionState;
+        }
+
+        function RequestData(event, browserInfo, appInfo) {
+            this.event = {event};
+            this.browserInfo = browserInfo;
+            this.appInfo = appInfo;
+            this.timeStamp = new Date().getTime();
+        }
+
+        function getJsonList(requestData) {
+            var pairs = {};
+            pairs['items'] = JSON.stringify([requestData.event.event]);
+            pairs['device'] = JSON.stringify(requestData.browserInfo);
+            pairs['application'] = JSON.stringify(requestData.appInfo);
+            pairs['timestamp'] = JSON.stringify(requestData.timeStamp);
+            return pairs;
+        }
+
+        function getQueryString(pairs) {
+            var str = [];
+            for(var p in pairs)
+                str.push(p + "=" + encodeURIComponent(pairs[p]));
+            return str.join("&");
+        }
+
+        return ZappEventLogger.instance = this;
+    }
+
+    var zappEventLogger = new ZappEventLogger;
+
+    //endregion
+
+    //region ZappInfoCollector
+
+    function ZappInfoCollector() {
+        if (ZappInfoCollector.instance) {
+            return ZappInfoCollector.instance;
+        }
+
+        this.location = function() {
+            var result = {};
             result["lat"] = "some latitude";
             result["long"] = "some longitude";
             return result;
-        },
+        };
 
-        connectionState: function() {
+        this.connectionState = function() {
             return "connected";
-        },
+        };
 
-        browserInfo: function() {
-            var result = [];
+        this.browserInfo = function() {
+            var result = {};
             result["type"] = "some_browser_type";
             result["version"] = "some_browser_version";
             return result;
-        },
+        };
 
-        appInfo: function() {
-            var result = [];
-            result["name"] = "some.app.name";
-            result["version"] = "some_app_version";
+        this.appInfo = function() {
+            var result = {};
+            result["name"] = localStorage.getItem(APP_NAME_KEY);
+            result["version"] = localStorage.getItem(APP_VERSION_KEY);
             return result;
-        },
+        };
 
-        appId: function() {
-            return "app_id";
+        return ZappInfoCollector.instance = this;
+    }
+
+    var zappInfoCollector = new ZappInfoCollector;
+
+    //endregion
+
+    //region ZappConnectionService
+
+    function ZappConnectionService() {
+        if (ZappConnectionService.instance) {
+            return ZappConnectionService.instance;
         }
 
+        this.postData=function(URL, jsonData) {
 
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open("POST", URL, true);
+            xmlHttp.setRequestHeader("content-type", "application/x-www-form-urlencoded");
 
-        // options: function() {
-        //     var enableHighAccuracy = true;
-        //     var timeout = 5000;
-        //     var maximumAge = 0;
-        // },
-        //
-        // success: function(pos) {
-        //     var crd = pos.coords;
-        //
-        //     console.log('Your current position is:');
-        //     console.log('Latitude : ' + crd.latitude);
-        //     console.log('Longitude: ' + crd.longitude);
-        //     console.log('More or less ' + crd.accuracy + ' meters.');
-        // },
-        //
-        // error: function(err) {
-        //     console.warn('ERROR(' + err.code + '): ' + err.message);
-        // },
-        //
-        // info: function() {
-        //     return navigator.geolocation.getCurrentPosition(this.success, this.error, this.options);
-        // },
+            xmlHttp.onreadystatechange = function() {
 
-    };
-
-//endregion
-
-//region ZappConnectionService
-
-var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
-
-    var zappConnectionService = {
-
-        postData: function(URL, jsonData) {
-
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (xhttp.readyState == 4 && xhttp.status == 200) {
-                    document.getElementById("demo").innerHTML = xhttp.responseText;
+                if (this.readyState === 4) {
+                    var response = JSON.parse(this.responseText);
+                    if (response.status)
+                        alert("Event logged successfully!");
+                    else
+                        alert("Ooops! Seems like some problem appeared..");
                 }
             };
-            xhttp.open("POST", URL, true);
-            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xhttp.send(jsonData);
-        }
 
-    };
+            xmlHttp.send(jsonData);
+        };
 
-//endregion
+        this.getData=function(URL) {
 
-//region ZappJsonManager
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open("GET", URL, true);
 
-    var zappJsonManager = {
+            xmlHttp.onreadystatechange = function() {
 
-        convertToJson: function(data) {
-            return "";
-        }
+                if (this.readyState === 4) {
+                    var response = JSON.parse(this.responseText);
+                    if (response.status) {
+                        alert("Welcome " + response.result + "!");
+                        localStorage.setItem(ZID_KEY, response.result);
+                    }
+                    else
+                        alert("Sorry, no such user!");
+                }
+            };
 
-    };
+            xmlHttp.send(null);
+        };
 
-//endregion
+        return ZappConnectionService.instance = this;
+    }
 
-//region Zapptitude
+    var zappConnectionService = new ZappConnectionService;
 
-    module.exports = {
+    //endregion
+
+    //region ZappView
+
+    // function ZappView() {
+    //     if (ZappView.instance) {
+    //         return ZappView.instance;
+    //     }
+    //
+    //     function showZappIdDialog() {
+    //         var zappId = prompt("Please enter your ZappId");
+    //         zappInternal.checkZappId(zappId);
+    //     };
+    //
+    //     this.showZappIdDialog = showZappIdDialog();
+    //
+    //     return ZappView.instance = this;
+    // }
+    //
+    // var zappView = new ZappView;
+
+    //endregion
+
+    return {
+
+        initAppInfo: function(appName, appId, appVersion) {
+
+            localStorage.setItem(APP_NAME_KEY, appName);
+            localStorage.setItem(APP_IDENTIFIER_KEY, appId);
+            localStorage.setItem(APP_VERSION_KEY, appVersion);
+            var cleanedAppId = zappInternal.replaceAll((appId && appVersion) ? appId : UNKNOWN_APP_TEXT, REGULAR_EXPRESSION, REPLACEMENT);
+            zappEventLogger.loggerWithAppID(cleanedAppId);
+        },
 
         requestZappId: function() {
             zappInternal.requestZappId();
@@ -350,6 +461,9 @@ var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
         logSolveGradTask: function(type, task, context, topics, expected, actual, among) {
             zappEventManager.logSolveGradTask(type, task, context, topics, expected, actual, among, zappInternal.sessionInfoForTask(task, context));
         }
+
     };
 
-//endregion
+})();
+
+

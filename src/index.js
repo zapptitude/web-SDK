@@ -86,7 +86,7 @@
 
             result[ZID_KEY] = localStorage.getItem(ZID_KEY) || zappId;
             result[ZID_SESSION] = randomId();
-            result[ZID_DURATION] = String.valueOf(zappInternal.taskDuration(task, context).toFixed(3));
+            result[ZID_DURATION] = String.valueOf(this.taskDuration(task, context).toFixed(3));
             result[ZID_TIME] = String.valueOf(new Date().getTime() - sessionStartTime);
 
             return result;
@@ -132,6 +132,13 @@
         function checkZappId(zappId) {
             var url = Z_URL_PART + "/" + "check" + "/" + zappId;
             zappConnectionService.getData(url);
+        }
+
+        this.userProviderZappId = function() {
+            var zappId = localStorage.getItem(ZID_KEY);
+            if (!zappId)
+                return "zapp id was not entered";
+            return zappId;
         }
 
         return ZappInternal.instance = this;

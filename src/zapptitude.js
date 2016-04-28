@@ -28,7 +28,7 @@
     var ZID_DURATION = "duration";
     var ZID_TIME = "time";
 
-    var Z_URL_PART = "https://zapptitude-dev.herokuapp.com/api";
+    var Z_URL_PART = "http://test.zapptitude.com/api";
 
     var REGULAR_EXPRESSION = "[^a-zA-Z0-9.-]";
     var REPLACEMENT = "_";

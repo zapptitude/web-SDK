@@ -58,16 +58,6 @@
         var sessionStartTime = new Date().getTime();
         var taskStartTime = 0;
 
-        // var appVersion = localStorage.getItem(APP_VERSION_KEY)
-        // var appIdentifier = localStorage.getItem(APP_IDENTIFIER_KEY)
-
-
-        // var appId = (appIdentifier && appVersion) ? appIdentifier : UNKNOWN_APP_TEXT;
-
-        // var cleanedAppId = replaceAll(appId, REGULAR_EXPRESSION, REPLACEMENT);
-        //
-        // // zappEventLogger.loggerWithAppID(cleanedAppId);
-        //
         this.replaceAll = function(str, find, replace) {
             return str.replace(new RegExp(find, 'g'), replace);
         };

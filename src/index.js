@@ -18,7 +18,7 @@
     var ACTUAL_KEY = "actual";
     var AMONG_KEY = "among";
     var BINARY_KEY = "binary";
-    var INT_KEY = "binary";
+    var INT_KEY = "int";
     var FLOAT_KEY = "float";
     var MC_KEY = "mc";
     var GRAD_KEY = "grad";

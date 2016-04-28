@@ -125,8 +125,9 @@
         }
 
         this.requestZappId = function() {
-            var zappId = prompt("Please enter your ZappId");
-            checkZappId(zappId);
+            var zappId = prompt("Please enter your ZappId", localStorage.getItem(ZID_KEY) || "");
+            if (zappId)
+                checkZappId(zappId);
         };
 
         function checkZappId(zappId) {
@@ -352,9 +353,7 @@
 
                 if (this.readyState === 4) {
                     var response = JSON.parse(this.responseText);
-                    if (response.status)
-                        alert("Event logged successfully!");
-                    else
+                    if (!response.status)
                         alert("Ooops! Seems like some problem appeared..");
                 }
             };
@@ -372,7 +371,6 @@
                 if (this.readyState === 4) {
                     var response = JSON.parse(this.responseText);
                     if (response.status) {
-                        alert("Welcome " + response.result + "!");
                         localStorage.setItem(ZID_KEY, response.result);
                     }
                     else
@@ -442,24 +440,24 @@
             zappEventManager.logBeginTask(task, context, zappInternal.sessionInfo());
         },
 
-        logSolveBinaryTask: function(type, task, context, topics, expected, actual) {
-            zappEventManager.logSolveBinaryTask(type, task, context, topics, expected, actual, zappInternal.sessionInfoForTask(task, context));
+        logSolveBinaryTask: function(task, context, topics, expected, actual) {
+            zappEventManager.logSolveBinaryTask(task, context, topics, expected, actual, zappInternal.sessionInfoForTask(task, context));
         },
 
-        logSolveIntTask: function(type, task, context, topics, expected, actual) {
-            zappEventManager.logSolveIntTask(type, task, context, topics, expected, actual, zappInternal.sessionInfoForTask(task, context));
+        logSolveIntTask: function(task, context, topics, expected, actual) {
+            zappEventManager.logSolveIntTask(task, context, topics, expected, actual, zappInternal.sessionInfoForTask(task, context));
         },
 
-        logSolveFloatTask: function(type, task, context, topics, expected, actual) {
-            zappEventManager.logSolveFloatTask(type, task, context, topics, expected, actual, zappInternal.sessionInfoForTask(task, context));
+        logSolveFloatTask: function(task, context, topics, expected, actual) {
+            zappEventManager.logSolveFloatTask(task, context, topics, expected, actual, zappInternal.sessionInfoForTask(task, context));
         },
 
-        logSolveMCTask: function(type, task, context, topics, expected, actual, among) {
-            zappEventManager.logSolveMCTask(type, task, context, topics, expected, actual, among, zappInternal.sessionInfoForTask(task, context));
+        logSolveMCTask: function(task, context, topics, expected, actual, among) {
+            zappEventManager.logSolveMCTask(task, context, topics, expected, actual, among, zappInternal.sessionInfoForTask(task, context));
         },
 
-        logSolveGradTask: function(type, task, context, topics, expected, actual, among) {
-            zappEventManager.logSolveGradTask(type, task, context, topics, expected, actual, among, zappInternal.sessionInfoForTask(task, context));
+        logSolveGradTask: function(task, context, topics, expected, actual, among) {
+            zappEventManager.logSolveGradTask(task, context, topics, expected, actual, among, zappInternal.sessionInfoForTask(task, context));
         }
 
     };

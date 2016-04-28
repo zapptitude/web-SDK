@@ -214,17 +214,13 @@
 
         this.loggerWithAppID = function(appId) {
 
-            debugger;
-
             if(!appIdIsValid(appId))
                 return;
 
             var sessionId = generateSessionId(appId);
             localStorage.setItem(APP_ID_KEY, appId)
             localStorage.setItem(SESSION_ID_KEY, sessionId);
-
-            debugger;
-
+            
             this.logEvent("start_session");
         }
 

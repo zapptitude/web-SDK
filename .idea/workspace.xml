@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6697efcb-8e5d-4b87-9b8b-bfdef8185649" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/index.js" afterPath="$PROJECT_DIR$/src/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/zapptitude.js" afterPath="$PROJECT_DIR$/src/zapptitude.js" />
     </list>
     <ignored path="zapptitude-sdk-javascript.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -46,8 +46,8 @@
       <file leaf-file-name="zapptitude.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/zapptitude.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="311">
+              <caret line="265" column="21" selection-start-line="265" selection-start-column="19" selection-end-line="265" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -109,6 +109,7 @@
         <option value="$APPLICATION_CONFIG_DIR$/javascript/extLibs/http_zapptitude-dev.herokuapp.com_js_index.js" />
         <option value="$PROJECT_DIR$/src/index.html" />
         <option value="$PROJECT_DIR$/src/index.js" />
+        <option value="$PROJECT_DIR$/src/zapptitude.js" />
       </list>
     </option>
   </component>
@@ -253,12 +254,12 @@
       <workItem from="1461581697352" duration="6077000" />
       <workItem from="1461592622058" duration="261000" />
       <workItem from="1461592905798" duration="919000" />
-      <workItem from="1461673274756" duration="6245000" />
+      <workItem from="1461673274756" duration="6368000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="100222000" />
+    <option name="totallyTimeSpent" value="100345000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="45" y="25" width="1878" height="1057" extended-state="0" />
@@ -511,8 +512,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/zapptitude.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="311">
+          <caret line="265" column="21" selection-start-line="265" selection-start-column="19" selection-end-line="265" selection-end-column="21" />
           <folding />
         </state>
       </provider>

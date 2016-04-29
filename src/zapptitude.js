@@ -5,6 +5,8 @@
     var POSITIVE_INDEX = 100000000;
     var RANDOM_LENGTH_INDEX = 900000000000000000;
 
+    var MILLISECONDS_INDEX = 1000;
+
     var Z_EVENT_KEY = "ZEvent";
     var Z_BEGIN_TASK_KEY = "ZBeginTask";
     var Z_SOLVE_TASK_KEY = "ZSolveTask";
@@ -67,7 +69,8 @@
 
             result[ZID_KEY] = localStorage.getItem(ZID_KEY) || zappId;
             result[ZID_SESSION] = randomId();
-            result[ZID_TIME] = String.valueOf(new Date().getTime() - sessionStartTime);
+            result[ZID_TIME] = ((new Date().getTime() - sessionStartTime) / MILLISECONDS_INDEX).toFixed(3).toString();
+
             return result;
         };
 
@@ -76,8 +79,8 @@
 
             result[ZID_KEY] = localStorage.getItem(ZID_KEY) || zappId;
             result[ZID_SESSION] = randomId();
-            result[ZID_DURATION] = String.valueOf(this.taskDuration(task, context).toFixed(3));
-            result[ZID_TIME] = String.valueOf(new Date().getTime() - sessionStartTime);
+            result[ZID_DURATION] = this.taskDuration(task, context).toFixed(3).toString();
+            result[ZID_TIME] = ((new Date().getTime() - sessionStartTime) / MILLISECONDS_INDEX).toFixed(3).toString();
 
             return result;
         };
@@ -96,7 +99,7 @@
         }
 
         function randomId() {
-            return "Z-" + Math.floor(POSITIVE_INDEX + Math.random() * RANDOM_LENGTH_INDEX);
+            return "Z--" + Math.floor(POSITIVE_INDEX + Math.random() * RANDOM_LENGTH_INDEX);
         }
 
         function setTask(task, context) {
@@ -147,35 +150,32 @@
         }
 
         this.logEvent = function(event, info) {
-            var loggedArray = {info};
 
-            loggedArray[EVENT_KEY] = event;
+            info[EVENT_KEY] = event;
 
-            zappEventLogger.logEvent(Z_EVENT_KEY, loggedArray)
+            zappEventLogger.logEvent(Z_EVENT_KEY, info);
         };
 
         this.logBeginTask = function(task, context, info) {
-            var loggedArray = {info};
 
-            loggedArray[TASK_KEY] = task;
-            loggedArray[CONTEXT_KEY] = context;
+            info[TASK_KEY] = task;
+            info[CONTEXT_KEY] = context;
 
-            zappEventLogger.logEvent(Z_BEGIN_TASK_KEY, loggedArray)
+            zappEventLogger.logEvent(Z_BEGIN_TASK_KEY, info);
         };
 
         this.logSolveTask = function(type, task, context, topics, expected, actual, among, info) {
-            var loggedArray = {info};
 
-            loggedArray[TYPE_KEY] = type;
-            loggedArray[EXPECTED_KEY] = expected;
-            loggedArray[ACTUAL_KEY] = actual;
-            loggedArray[TASK_KEY] = task;
-            loggedArray[CONTEXT_KEY] = context;
-            loggedArray[TOPICS_KEY] = topics;
+            info[TYPE_KEY] = type;
+            info[EXPECTED_KEY] = expected;
+            info[ACTUAL_KEY] = actual;
+            info[TASK_KEY] = task;
+            info[CONTEXT_KEY] = context;
+            info[TOPICS_KEY] = topics;
             if (among !== undefined) {
-                loggedArray[AMONG_KEY] = among;
+                info[AMONG_KEY] = among;
             }
-            zappEventLogger.logEvent(Z_SOLVE_TASK_KEY, loggedArray)
+            zappEventLogger.logEvent(Z_SOLVE_TASK_KEY, info);
         };
 
         this.logSolveBinaryTask = function(task, context, topics, expected, actual, info) {
@@ -371,27 +371,6 @@
     }
 
     var zappConnectionService = new ZappConnectionService;
-
-    //endregion
-
-    //region ZappView
-
-    // function ZappView() {
-    //     if (ZappView.instance) {
-    //         return ZappView.instance;
-    //     }
-    //
-    //     function showZappIdDialog() {
-    //         var zappId = prompt("Please enter your ZappId");
-    //         zappInternal.checkZappId(zappId);
-    //     };
-    //
-    //     this.showZappIdDialog = showZappIdDialog();
-    //
-    //     return ZappView.instance = this;
-    // }
-    //
-    // var zappView = new ZappView;
 
     //endregion
 

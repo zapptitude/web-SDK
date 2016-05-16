@@ -2,10 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6697efcb-8e5d-4b87-9b8b-bfdef8185649" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/index.html" afterPath="$PROJECT_DIR$/src/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/zappIdDialog.css" afterPath="$PROJECT_DIR$/src/zappIdDialog.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/zappIdDialog.html" afterPath="$PROJECT_DIR$/src/zappIdDialog.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/zapptitude.js" afterPath="$PROJECT_DIR$/src/zapptitude.js" />
     </list>
     <ignored path="zapptitude-sdk-javascript.iws" />
@@ -30,50 +26,25 @@
       <file leaf-file-name="zapptitude.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/zapptitude.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="1165" column="6" selection-start-line="1165" selection-start-column="6" selection-end-line="1165" selection-end-column="6" />
+            <state relative-caret-position="120">
+              <caret line="314" column="10" selection-start-line="314" selection-start-column="10" selection-end-line="314" selection-end-column="10" />
               <folding>
                 <element signature="e#37#55#0" expanded="false" />
                 <element signature="e#2758#2779#0" expanded="false" />
                 <element signature="e#2909#2928#0" expanded="false" />
                 <element signature="e#3202#3228#0" expanded="false" />
                 <element signature="e#5694#5720#0" expanded="false" />
-                <element signature="e#6390#6415#0" expanded="false" />
-                <element signature="e#8607#8631#0" expanded="false" />
-                <element signature="e#8770#8796#0" expanded="false" />
-                <element signature="e#9657#9684#0" expanded="false" />
-                <element signature="e#11384#11410#0" expanded="false" />
-                <element signature="e#11555#11581#0" expanded="false" />
-                <element signature="e#12678#12705#0" expanded="false" />
-                <element signature="e#14027#14057#0" expanded="false" />
-                <element signature="e#15658#15686#0" expanded="false" />
-                <element signature="e#15837#15856#0" expanded="false" />
-                <element signature="e#16619#16636#0" expanded="false" />
-                <element signature="e#16758#16779#0" expanded="false" />
-                <element signature="e#24188#24211#0" expanded="false" />
-                <element signature="e#27185#27206#0" expanded="false" />
-                <element signature="e#39529#41705#0" expanded="false" />
+                <element signature="e#10948#10972#0" expanded="false" />
+                <element signature="e#11111#11137#0" expanded="false" />
+                <element signature="e#11998#12025#0" expanded="false" />
+                <element signature="e#13725#13751#0" expanded="false" />
+                <element signature="e#13896#13922#0" expanded="false" />
+                <element signature="e#15019#15046#0" expanded="false" />
+                <element signature="e#16368#16398#0" expanded="false" />
+                <element signature="e#17999#18027#0" expanded="false" />
+                <element signature="e#18178#18197#0" expanded="false" />
+                <element signature="e#29526#29547#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="zappIdDialog.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/zappIdDialog.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3">
-              <caret line="51" column="30" selection-start-line="51" selection-start-column="30" selection-end-line="51" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="zappIdDialog.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/zappIdDialog.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="246">
-              <caret line="28" column="20" selection-start-line="28" selection-start-column="20" selection-end-line="28" selection-end-column="20" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -245,16 +216,16 @@
       <workItem from="1461592905798" duration="919000" />
       <workItem from="1461673274756" duration="6368000" />
       <workItem from="1461924063667" duration="29228000" />
-      <workItem from="1462953034238" duration="48647000" />
+      <workItem from="1462953034238" duration="52763000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="183445000" />
+    <option name="totallyTimeSpent" value="187561000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="42" y="23" width="1878" height="1057" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.185836" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -389,21 +360,16 @@
             <element signature="e#2909#2928#0" expanded="false" />
             <element signature="e#3202#3228#0" expanded="false" />
             <element signature="e#5694#5720#0" expanded="false" />
-            <element signature="e#6390#6415#0" expanded="false" />
-            <element signature="e#8607#8631#0" expanded="false" />
-            <element signature="e#8770#8796#0" expanded="false" />
-            <element signature="e#9657#9684#0" expanded="false" />
-            <element signature="e#11384#11410#0" expanded="false" />
-            <element signature="e#11555#11581#0" expanded="false" />
-            <element signature="e#12678#12705#0" expanded="false" />
-            <element signature="e#14027#14057#0" expanded="false" />
-            <element signature="e#15658#15686#0" expanded="false" />
-            <element signature="e#15837#15856#0" expanded="false" />
-            <element signature="e#16619#16636#0" expanded="false" />
-            <element signature="e#16758#16779#0" expanded="false" />
-            <element signature="e#24188#24211#0" expanded="false" />
-            <element signature="e#27185#27206#0" expanded="false" />
-            <element signature="e#39529#41705#0" expanded="false" />
+            <element signature="e#10948#10972#0" expanded="false" />
+            <element signature="e#11111#11137#0" expanded="false" />
+            <element signature="e#11998#12025#0" expanded="false" />
+            <element signature="e#13725#13751#0" expanded="false" />
+            <element signature="e#13896#13922#0" expanded="false" />
+            <element signature="e#15019#15046#0" expanded="false" />
+            <element signature="e#16368#16398#0" expanded="false" />
+            <element signature="e#17999#18027#0" expanded="false" />
+            <element signature="e#18178#18197#0" expanded="false" />
+            <element signature="e#29526#29547#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -599,29 +565,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/zapptitude.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="1165" column="6" selection-start-line="1165" selection-start-column="6" selection-end-line="1165" selection-end-column="6" />
+        <state relative-caret-position="120">
+          <caret line="314" column="10" selection-start-line="314" selection-start-column="10" selection-end-line="314" selection-end-column="10" />
           <folding>
             <element signature="e#37#55#0" expanded="false" />
             <element signature="e#2758#2779#0" expanded="false" />
             <element signature="e#2909#2928#0" expanded="false" />
             <element signature="e#3202#3228#0" expanded="false" />
             <element signature="e#5694#5720#0" expanded="false" />
-            <element signature="e#6390#6415#0" expanded="false" />
-            <element signature="e#8607#8631#0" expanded="false" />
-            <element signature="e#8770#8796#0" expanded="false" />
-            <element signature="e#9657#9684#0" expanded="false" />
-            <element signature="e#11384#11410#0" expanded="false" />
-            <element signature="e#11555#11581#0" expanded="false" />
-            <element signature="e#12678#12705#0" expanded="false" />
-            <element signature="e#14027#14057#0" expanded="false" />
-            <element signature="e#15658#15686#0" expanded="false" />
-            <element signature="e#15837#15856#0" expanded="false" />
-            <element signature="e#16619#16636#0" expanded="false" />
-            <element signature="e#16758#16779#0" expanded="false" />
-            <element signature="e#24188#24211#0" expanded="false" />
-            <element signature="e#27185#27206#0" expanded="false" />
-            <element signature="e#39529#41705#0" expanded="false" />
+            <element signature="e#10948#10972#0" expanded="false" />
+            <element signature="e#11111#11137#0" expanded="false" />
+            <element signature="e#11998#12025#0" expanded="false" />
+            <element signature="e#13725#13751#0" expanded="false" />
+            <element signature="e#13896#13922#0" expanded="false" />
+            <element signature="e#15019#15046#0" expanded="false" />
+            <element signature="e#16368#16398#0" expanded="false" />
+            <element signature="e#17999#18027#0" expanded="false" />
+            <element signature="e#18178#18197#0" expanded="false" />
+            <element signature="e#29526#29547#0" expanded="false" />
           </folding>
         </state>
       </provider>

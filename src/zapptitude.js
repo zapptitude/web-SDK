@@ -276,78 +276,22 @@
         };
 
         this.logSolveBinaryTask = function(task, context, topics, expected, actual, info) {
-            var type = "boolean";
-            if (typeof(expected) !== type) {
-                alert("expected parameter value should be " + type + " type!");
-                return;
-            }
-            if (typeof(actual) !== type) {
-                alert("actual parameter value should be " + type + " type!");
-                return;
-            }
             this.logSolveTask(BINARY_KEY, task, context, topics, expected, actual, undefined, info)
         };
 
         this.logSolveIntTask = function(task, context, topics, expected, actual, info) {
-            var type = "number (integer)";
-            if (!isInt(parseInt(expected))) {
-                alert("expected parameter value should be " + type + " type!");
-                return;
-            }
-            if (!isInt(parseInt(actual))) {
-                alert("actual parameter value should be " + type + " type!");
-                return;
-            }
             this.logSolveTask(INT_KEY, task, context, topics, expected, actual, undefined, info)
         };
 
         this.logSolveFloatTask = function(task, context, topics, expected, actual, info) {
-            debugger;
-            var type = "number (float)";
-            if (!isFloat(parseFloat(expected)) && !isInt(parseInt(expected))) {
-                alert("expected parameter value should be " + type + " type!");
-                return;
-            }
-            if (!isFloat(parseFloat(actual)) && !isInt(parseInt(actual))) {
-                alert("actual parameter value should be " + type + " type!");
-                return;
-            }
             this.logSolveTask(FLOAT_KEY, task, context, topics, expected, actual, undefined, info)
         };
 
         this.logSolveMCTask = function(task, context, topics, expected, actual, among, info) {
-            //var charType = "char";
-            var integerType = "number (integer)";
-            //if (typeof(expected) !== type) {
-            //    alert("expected parameter value should be " + charType + " type!");
-            //    return;
-            //}
-            //if (typeof(actual) !== type) {
-            //    alert("actual parameter value should be " + charType + " type!");
-            //    return;
-            //}
-            if (!isInt(parseInt(among))) {
-                alert("actual parameter value should be " + integerType + "type!");
-                return;
-            }
             this.logSolveTask(MC_KEY, task, context, topics, expected, actual, among, info)
         };
 
         this.logSolveGradTask = function(task, context, topics, expected, actual, among, info) {
-            debugger;
-            var type = "number (integer)";
-            if (!isInt(parseInt(expected))) {
-                alert("expected parameter value should be " + type + " type!");
-                return;
-            }
-            if (!isInt(parseInt(actual))) {
-                alert("actual parameter value should be " + type + " type!");
-                return;
-            }
-            if (!isInt(parseInt(among))) {
-                alert("actual parameter value should be " + type + " type!");
-                return;
-            }
             this.logSolveTask(GRAD_KEY, task, context, topics, expected, actual, among, info)
         };
 
@@ -1216,7 +1160,6 @@
         },
 
         logSolveIntTask: function(task, context, topics, expected, actual) {
-            debugger;
             zappEventManager.logSolveIntTask(task, context, topics, expected, actual, zappInternal.sessionInfoForTask(task, context));
         },
 

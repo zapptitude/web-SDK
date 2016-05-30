@@ -1,15 +1,16 @@
 # ZappSDK by MEV
 JavaScript library
 
-## Project Structure
+### Project Structure
 Javascript file that contains functions and wev views.
 Implement this JS library to project to enable event logging. 
-### images
+### Imagemages
 Images used in app and icons for all devices
 
-####Manual
+## Manual
 Before starting using zapp methods, developer should init app info (appName as string, appId as string, appVersion as string)
 zapptitude.initAppInfo(appName, appId, appVersion);
+
 
 To request zappId 
 zapptitude.requestZappId();
